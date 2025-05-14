@@ -10,17 +10,21 @@ import { FormsModule } from '@angular/forms';
 })
 export class TodolistComponent {
   
-  tasks:any[]=[];
+  tasks:{title:string, completed:boolean}[]=[];
   newTask='';
 
   addTask(){
-    if(this.newTask.trim()){
-      this.tasks.push(this.newTask.trim());
+    const title=this.newTask.trim();
+    if(title){
+      this.tasks.push({title,completed:false});
       this.newTask='';
     }
   }
   deleteTask(index: number){
     this.tasks.splice(index,1);
   }
+  toggleTask(index: number) {
+  this.tasks[index].completed = !this.tasks[index].completed;
+}
 
 }
